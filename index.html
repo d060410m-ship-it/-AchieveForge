@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AchieveForge — свои достижения для игр</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0b1a;--bg2:#171329;--card:#1d1836;--tx:#eceaff;--mu:#9a95c4;--a:#8b5cf6;--b:#22d3ee;--g:#fbbf24;--ok:#34d399;--bd:#2d2652;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1ff;--bg2:#e6e2ff;--card:#fff;--tx:#1b1738;--mu:#625c8f;--bd:#d6d0f5;color-scheme:light}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Montserrat,"Segoe UI",system-ui,sans-serif;background:radial-gradient(900px 500px at 85% -10%,#8b5cf655,transparent),radial-gradient(700px 400px at 0% 10%,#22d3ee33,transparent),var(--bg);color:var(--tx);min-height:100vh}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:16px 20px;max-width:1100px;margin:auto}
+.logo{font-weight:800;font-size:22px;letter-spacing:.5px}.logo b{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{max-width:1100px;margin:8px auto 0;padding:0 20px}
+.hero h1{font-size:clamp(26px,5vw,44px);margin:6px 0;line-height:1.1}
+.hero p{color:var(--mu);max-width:620px;margin:0 0 14px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.stat{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:10px 16px;min-width:110px}
+.stat b{display:block;font-size:22px}.stat span{color:var(--mu);font-size:12px}
+nav{max-width:1100px;margin:14px auto;padding:0 20px;display:flex;gap:8px;overflow-x:auto}
+.btn{position:relative;overflow:hidden;border:0;cursor:pointer;font:600 14px inherit;font-family:inherit;color:#fff;padding:11px 20px;border-radius:12px;background:linear-gradient(120deg,var(--a),#6d3df0 50%,var(--b));background-size:200% 100%;transition:transform .2s,box-shadow .3s,background-position .5s;box-shadow:0 4px 18px #8b5cf655;white-space:nowrap}
+.btn:hover{transform:translateY(-2px);background-position:100% 0;box-shadow:0 8px 26px #22d3ee55}
+.btn:active{transform:scale(.96)}
+.btn::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,#fff6,transparent);transform:skewX(-20deg);transition:left .6s}
+.btn:hover::after{left:130%}
+.btn.ghost{background:var(--card);border:1px solid var(--bd);color:var(--tx);box-shadow:none}
+.btn.ghost.on{border-color:var(--a);box-shadow:0 0 0 2px #8b5cf655,0 0 20px #8b5cf644}
+.btn.steam{background:linear-gradient(120deg,#1b2838,#2a475e);box-shadow:0 4px 18px #1b283888}
+.btn.sm{padding:7px 13px;font-size:12px;border-radius:9px}
+.rip{position:absolute;border-radius:50%;background:#fff6;transform:scale(0);animation:rp .6s linear;pointer-events:none}
+@keyframes rp{to{transform:scale(4);opacity:0}}
+main{max-width:1100px;margin:auto;padding:0 20px 60px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;position:relative;transition:transform .25s,border-color .25s,box-shadow .25s;animation:in .45s both}
+.card:hover{transform:translateY(-4px);border-color:var(--a);box-shadow:0 10px 30px #8b5cf633}
+@keyframes in{from{opacity:0;transform:translateY(12px)}}
+.card h3{margin:6px 0 4px;font-size:16px}.card p{margin:0 0 12px;color:var(--mu);font-size:13px}
+.tag{display:inline-block;font-size:11px;padding:3px 9px;border-radius:20px;background:#8b5cf630;color:var(--a);font-weight:600}
+.r-Редкое{background:#22d3ee26;color:var(--b)}.r-Эпическое{background:#a855f733;color:#c084fc}.r-Легендарное{background:#fbbf2433;color:var(--g)}
+.done{border-color:var(--ok)}.done .ico{filter:none}
+.ico{font-size:30px}
+.bar{height:9px;background:var(--bg2);border-radius:9px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--a),var(--b));border-radius:9px;transition:width .7s}
+.plat{border-color:var(--g);background:linear-gradient(160deg,#fbbf2420,var(--card))}
+.plat .ico{animation:glow 2s infinite alternate}
+@keyframes glow{to{text-shadow:0 0 18px var(--g);transform:scale(1.12)}}
+.panel{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;margin-bottom:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.panel label{display:flex;flex-direction:column;font-size:12px;color:var(--mu);gap:4px;flex:1;min-width:140px}
+input,select{background:var(--bg2);border:1px solid var(--bd);color:var(--tx);padding:10px;border-radius:10px;font:inherit;font-size:14px}
+input:focus,select:focus{outline:2px solid var(--a)}
+.empty{color:var(--mu);text-align:center;padding:30px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,80px);background:var(--card);border:1px solid var(--a);padding:12px 20px;border-radius:14px;transition:transform .4s;z-index:9;box-shadow:0 8px 30px #0006}
+.toast.show{transform:translate(-50%,0)}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);opacity:.4;animation:fl 14s ease-in-out infinite alternate}
+body::before{width:420px;height:420px;background:var(--a);top:-120px;left:-100px}
+body::after{width:380px;height:380px;background:var(--b);bottom:-120px;right:-80px;animation-delay:-6s}
+@keyframes fl{to{transform:translate(80px,60px) scale(1.2)}}
+@keyframes sh{to{background-position:200% 0}}
+.logo{font-size:24px;text-shadow:0 0 24px #8b5cf6aa}
+.hero h1{font-size:clamp(30px,6vw,56px);font-weight:800;letter-spacing:-1px}
+.hero h1 b{background:linear-gradient(90deg,var(--b),var(--a),var(--g),var(--b));background-size:200%;-webkit-background-clip:text;background-clip:text;color:transparent!important;animation:sh 5s linear infinite}
+.stat{background:linear-gradient(145deg,#ffffff14,#ffffff04),var(--card);border-radius:16px}
+.stat b{background:linear-gradient(90deg,var(--b),var(--a));-webkit-background-clip:text;background-clip:text;color:transparent}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;margin:14px 0;max-width:none;padding:10px max(20px,calc((100% - 1060px)/2));backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 72%,transparent)}
+.card{background:linear-gradient(160deg,color-mix(in srgb,var(--card) 90%,#fff),var(--card));overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--a),var(--b))}
+.card.done::before{background:var(--ok)}.card.plat::before{background:var(--g)}
+.ico{display:inline-block;width:54px;height:54px;line-height:54px;text-align:center;border-radius:15px;background:#8b5cf622;font-size:28px;margin-bottom:6px}
+.bar i{background:linear-gradient(90deg,var(--a),var(--b),var(--a));background-size:200%;animation:sh 3s linear infinite}
+.panel{background:linear-gradient(145deg,#ffffff0d,#ffffff03),var(--card)}
+.btn:not(.ghost){animation:pu 3s infinite}
+@keyframes pu{50%{box-shadow:0 4px 28px #22d3ee66}}
+.conf{position:fixed;top:-30px;font-size:26px;z-index:30;pointer-events:none;animation:fall 2.2s ease-in forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg);opacity:.2}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">⚒ Achieve<b>Forge</b></div>
+  <button class="btn steam" id="login">🎮 Войти через Steam</button>
+</header>
+<section class="hero">
+  <h1>Создавай свои <b style="color:var(--b)">достижения</b> для любых игр</h1>
+  <p>Придумывай ачивки, собирай платину, вступай в клубы и бросай вызов друзьям в челленджах.</p>
+  <div class="stats" id="stats"></div>
+</section>
+<nav id="tabs"></nav>
+<main id="view"></main>
+<div id="md" style="display:none;position:fixed;inset:0;background:#000a;z-index:20;align-items:center;justify-content:center"><div class="panel" style="max-width:360px;width:90%;flex-direction:column;align-items:stretch;margin:0"><b>🎮 Вход через Steam</b><a class="btn steam" id="sgo" target="_blank" rel="noopener" href="https://steamcommunity.com/openid/login" style="display:block;text-align:center;text-decoration:none">Перейти на Steam и войти</a><a class="btn ghost" target="_blank" rel="noopener" href="https://store.steampowered.com/join/" style="display:block;text-align:center;text-decoration:none">Нет аккаунта? Создать в Steam</a><label>или введи ник вручную<input id="sn" maxlength="24"></label><button class="btn" id="sok">Привязать ник</button><button class="btn ghost" id="sno">Закрыть</button></div></div>
+<div class="toast" id="toast"></div>
+<script>
+var T=[["ach","🏆 Достижения"],["plat","💎 Платина"],["clubs","🛡 Клубы"]];
+var S={user:"",tab:"ach",xp:0,
+ach:[],
+clubs:[{id:1,name:"Охотники за платиной",game:"Любая игра",n:1280,j:false},{id:2,name:"Спидраннеры",game:"Hades",n:342,j:false},{id:3,name:"Уютные фермеры",game:"Stardew Valley",n:615,j:true}],
+ch:[{id:1,title:"7 ачивок за неделю",game:"Любая игра",xp:200,j:false,d:false},{id:2,title:"Забег без паузы",game:"Hades",xp:120,j:false,d:false},{id:3,title:"Первая платина",game:"Любая игра",xp:300,j:false,d:false}]};
+try{var sv=localStorage.getItem("af2");if(sv)S=JSON.parse(sv);if(S.tab=="ch")S.tab="ach"}catch(e){}
+function save(){try{localStorage.setItem("af2",JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function $(i){return document.getElementById(i)}
+function toast(t){var e=$("toast");e.textContent=t;e.className="toast show";clearTimeout(toast.t);toast.t=setTimeout(function(){e.className="toast"},2600)}
+function games(){var g={};S.ach.forEach(function(a){(g[a.game]=g[a.game]||[]).push(a)});return g}
+function platCount(){var g=games(),n=0;for(var k in g){if(g[k].length>1&&g[k].every(function(a){return a.done}))n++}return n}
+function stats(){var d=S.ach.filter(function(a){return a.done}).length;
+$("stats").innerHTML=[[d+"/"+S.ach.length,"достижений"],[platCount(),"платины"],[S.clubs.filter(function(c){return c.j}).length,"клубов"],[S.xp,"XP · ур. "+(1+Math.floor(S.xp/250))]].map(function(x){return '<div class="stat"><b>'+x[0]+'</b><span>'+x[1]+'</span></div>'}).join("")}
+function tabs(){$("tabs").innerHTML=T.map(function(t){return '<button class="btn ghost'+(S.tab==t[0]?" on":"")+'" data-t="'+t[0]+'">'+t[1]+'</button>'}).join("")}
+function gameOpts(){var g=Object.keys(games());return g.map(function(x){return '<option>'+esc(x)+'</option>'}).join("")}
+function view(){var h="",v=S.tab;
+if(v=="ach"){
+h+='<div class="panel"><label>Игра<input id="g" placeholder="Например, Hades" list="gl"></label><datalist id="gl">'+gameOpts()+'</datalist><label>Название<input id="t" placeholder="Название ачивки"></label><label>Описание<input id="d" placeholder="Что нужно сделать"></label><label>Редкость<select id="r"><option>Обычное</option><option>Редкое</option><option>Эпическое</option><option>Легендарное</option></select></label><button class="btn" data-a="addA">＋ Создать</button></div><div class="grid">';
+S.ach.forEach(function(a,i){h+='<div class="card'+(a.done?" done":"")+'" style="animation-delay:'+i*40+'ms"><div class="ico" style="filter:'+(a.done?"none":"grayscale(1) opacity(.5)")+'">🏆</div><span class="tag">'+esc(a.game)+'</span> <span class="tag r-'+a.rar+'">'+a.rar+'</span><h3>'+esc(a.title)+'</h3><p>'+esc(a.desc)+'</p><button class="btn sm'+(a.done?" ghost":"")+'" data-a="tog" data-i="'+a.id+'">'+(a.done?"✔ Получено":"Отметить")+'</button> <button class="btn sm ghost" data-a="delA" data-i="'+a.id+'">✕</button></div>'});
+if(!S.ach.length)h+='<div class="empty" style="grid-column:1/-1">Пока нет достижений. Создай первое выше ✨</div>';h+="</div>"}
+if(v=="plat"){var g=games(),k,any=0;h+='<div class="grid">';
+for(k in g){var L=g[k],d=L.filter(function(a){return a.done}).length,p=Math.round(d/L.length*100),ok=L.length>1&&d==L.length;any=1;
+h+='<div class="card'+(ok?" plat":"")+'"><div class="ico">'+(ok?"💎":"🎮")+'</div><h3>'+esc(k)+'</h3><p>'+d+' из '+L.length+' достижений</p><div class="bar"><i style="width:'+p+'%"></i></div><span class="tag" style="'+(ok?"background:#fbbf2433;color:var(--g)":"")+'">'+(ok?"Платина получена!":L.length<2?"Нужно минимум 2 ачивки":"Осталось "+(L.length-d))+'</span></div>'}
+h+="</div>";if(!any)h='<div class="empty">Создай достижения, чтобы начать копить платину</div>'}
+if(v=="clubs"){
+h+='<div class="panel"><label>Название клуба<input id="cn" placeholder="Например, Ночные рейдеры"></label><label>Игра<input id="cg" placeholder="Любая игра"></label><button class="btn" data-a="addC">＋ Создать клуб</button></div><div class="grid">';
+S.clubs.forEach(function(c,i){h+='<div class="card'+(c.j?" done":"")+'" style="animation-delay:'+i*40+'ms"><div class="ico">🛡</div><h3>'+esc(c.name)+'</h3><p>'+esc(c.game)+' · '+(c.n+(c.j?1:0))+' участников</p><button class="btn sm'+(c.j?" ghost":"")+'" data-a="joinC" data-i="'+c.id+'">'+(c.j?"Выйти":"Вступить")+'</button></div>'});h+="</div>"}
+if(v=="ch"){
+h+='<div class="panel"><label>Челлендж<input id="ct" placeholder="Например, Пройти без смертей"></label><label>Игра<input id="cgm" placeholder="Любая игра"></label><label>Награда XP<select id="cx"><option>50</option><option>100</option><option>200</option><option>300</option></select></label><button class="btn" data-a="addH">＋ Бросить вызов</button></div><div class="grid">';
+S.ch.forEach(function(c,i){h+='<div class="card'+(c.d?" done":"")+'" style="animation-delay:'+i*40+'ms"><div class="ico">⚔</div><span class="tag">'+esc(c.game)+'</span> <span class="tag r-Легендарное">+'+c.xp+' XP</span><h3>'+esc(c.title)+'</h3><p>'+(c.d?"Челлендж выполнен":c.j?"Ты участвуешь":"Открыт для всех")+'</p>'+(c.d?'<button class="btn sm ghost">✔ Выполнено</button>':c.j?'<button class="btn sm" data-a="fin" data-i="'+c.id+'">Завершить</button>':'<button class="btn sm" data-a="joinH" data-i="'+c.id+'">Принять</button>')+'</div>'});h+="</div>"}
+$("view").innerHTML=h}
+function render(){tabs();stats();view();$("login").textContent=S.user?"🎮 "+S.user+" · Steam":"🎮 Войти через Steam"}
+function confetti(){for(var i=0;i<28;i++){var c=document.createElement("div");c.className="conf";c.textContent=["💎","✨","🏆","⭐"][i%4];c.style.left=Math.random()*100+"vw";c.style.animationDelay=Math.random()*.6+"s";c.onanimationend=function(){this.remove()};document.body.appendChild(c)}}
+function find(a,id){return a.filter(function(x){return x.id==id})[0]}
+function val(i){var e=$(i);return e?e.value.trim():""}
+document.addEventListener("click",function(e){
+var b=e.target.closest(".btn");if(b){var r=document.createElement("span"),z=Math.max(b.offsetWidth,b.offsetHeight),q=b.getBoundingClientRect();r.className="rip";r.style.cssText="width:"+z+"px;height:"+z+"px;left:"+(e.clientX-q.left-z/2)+"px;top:"+(e.clientY-q.top-z/2)+"px";b.appendChild(r);setTimeout(function(){r.remove()},600)}
+var t=e.target.closest("[data-t]");if(t){S.tab=t.dataset.t;save();render();return}
+var a=e.target.closest("[data-a]");if(!a)return;var k=a.dataset.a,id=a.dataset.i;
+if(k=="addA"){if(!val("g")||!val("t")){toast("Укажи игру и название");return}var pc=platCount();S.ach.unshift({id:Date.now(),game:val("g"),title:val("t"),desc:val("d")||"Без описания",rar:val("r"),done:false});toast("Достижение создано ✨")}
+if(k=="tog"){var x=find(S.ach,id),pc=platCount();x.done=!x.done;if(x.done){S.xp+=({"Обычное":10,"Редкое":25,"Эпическое":50,"Легендарное":100})[x.rar];if(platCount()>pc){confetti();toast("💎 Платина получена!")}else toast("Достижение получено! 🏆")}}
+if(k=="delA"){S.ach=S.ach.filter(function(x){return x.id!=id});toast("Достижение удалено")}
+if(k=="addC"){if(!val("cn")){toast("Введи название клуба");return}S.clubs.unshift({id:Date.now(),name:val("cn"),game:val("cg")||"Любая игра",n:0,j:true});toast("Клуб создан 🛡")}
+if(k=="joinC"){var c=find(S.clubs,id);c.j=!c.j;toast(c.j?"Ты в клубе!":"Ты покинул клуб")}
+if(k=="addH"){if(!val("ct")){toast("Опиши челлендж");return}S.ch.unshift({id:Date.now(),title:val("ct"),game:val("cgm")||"Любая игра",xp:+val("cx"),j:false,d:false});toast("Вызов брошен ⚔")}
+if(k=="joinH"){find(S.ch,id).j=true;toast("Челлендж принят!")}
+if(k=="fin"){var h=find(S.ch,id);h.d=true;S.xp+=h.xp;toast("+"+h.xp+" XP! ⚔")}
+save();render()});
+function steamUrl(){var r=location.href.split("?")[0].split("#")[0],i="http://specs.openid.net/auth/2.0/identifier_select";if(!/^https?:/.test(r))r="https://claude.ai/";var o=r.replace(/^(https?:\/\/[^\/]+).*/,"$1");return"https://steamcommunity.com/openid/login?openid.ns="+encodeURIComponent("http://specs.openid.net/auth/2.0")+"&openid.mode=checkid_setup&openid.return_to="+encodeURIComponent(r)+"&openid.realm="+encodeURIComponent(o)+"&openid.identity="+encodeURIComponent(i)+"&openid.claimed_id="+encodeURIComponent(i)}
+function mdShow(f){$("md").style.display=f?"flex":"none";if(f){$("sgo").href=steamUrl();$("sn").value=""}}
+function bind(){var n=$("sn").value.trim();if(!n){toast("Введи ник или SteamID");return}S.user=n.slice(0,24);save();mdShow(false);render();toast("Steam-профиль привязан ✔")}
+$("login").onclick=function(){if(S.user){S.user="";save();render();toast("Профиль отвязан");return}mdShow(true)};
+$("sok").onclick=bind;$("sno").onclick=function(){mdShow(false)};
+$("sn").onkeydown=function(e){if(e.key=="Enter")bind()};
+try{var oc=new URLSearchParams(location.search).get("openid.claimed_id"),om=oc&&oc.match(/\/id\/(\d+)/);if(om){S.user="Steam "+om[1].slice(-6);save()}}catch(e){}
+render();
+</script>
+</body>
+</html>
